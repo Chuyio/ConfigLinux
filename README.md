@@ -13,11 +13,11 @@
 ### 联系邮箱：goodmoodwjl@163.com
 
 ## 使用环境
-* 由于内核的限制
-* 此脚本仅适用于Centos6.8以上版本、Centos7全系列
+#### 由于内核的限制
+#### 此脚本仅适用于Centos6.8以上版本、Centos7全系列
 
 ## 使用方法
-* Centos服务器上有git环境且可连接github直接克隆此项目即可
+#### Centos服务器上有git环境且可连接github直接克隆此项目即可
 ```
 mkdir -p /usr/local/git
 cd /usr/local/git
@@ -25,17 +25,17 @@ git clone git@github.com:Chuyio/ConfigLinux.git
 ```
 ![ConfigLinux_2](https://github.com/Chuyio/ConfigLinux/blob/master/ConfigLinux_2.jpg?raw=true)
 
-* 其他可以通过下载zip压缩包上传至服务器即可
+#### 其他可以通过下载zip压缩包上传至服务器即可
 ![ConfigLinux_1](https://github.com/Chuyio/ConfigLinux/blob/master/ConfigLinux_1.jpg?raw=true)
 
 ## 执行说明
-* 建议直接使用 bash setup.sh
+#### 建议直接使用 bash setup.sh
 ```
 [root@wcy ConfigLinux]# bash setup.sh 
 ```
 ## 效果图
-* 允许脚本后选择1、2、3、4、5要执行哪一项  
-![ConfigLinux_3](https://github.com/Chuyio/ConfigLinux/blob/master/ConfigLinux_1.jpg?raw=true)
+#### 允许脚本后选择1、2、3、4、5要执行哪一项  
+![ConfigLinux_3](https://github.com/Chuyio/ConfigLinux/blob/master/ConfigLinux_3.jpg?raw=true)
 
 ## 博客园地址
 [王初一博客](https://www.cnblogs.com/LuckWJL/p/9529142.html)
