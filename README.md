@@ -1,7 +1,6 @@
-<div align="center"><a href="https://github.com/Chuyio"><img border="0" src="https://cc.amazingcounters.com/counter.php?i=3204871&c=9614926" alt="美貌与智慧并存的你点下关注吧^^" title="访客次数"></a></div>
 <div align="center"><a href="http://www.cnblogs.com/LuckWJL"><img width="230px" src="https://www.cnblogs.com/images/cnblogs_com/LuckWJL/988555/o_%e5%8a%a8%e6%80%81%e6%95%b0%e5%ad%97.gif" alt="美貌与智慧并存的你点下关注吧^^" title="认真的人最酷"></a></div>
 
-![版本](https://img.shields.io/badge/version-3.6.0-brightgreen.svg)
+[![版本](https://img.shields.io/badge/version-3.6.0-brightgreen.svg)](https://github.com/Chuyio/ConfigLinux)
 [![download](https://img.shields.io/badge/download-99K-yellowgreen.svg)](https://github.com/Chuyio/ConfigLinux/archive/master.zip)
 
 # ConfigLinux
