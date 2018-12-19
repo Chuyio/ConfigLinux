@@ -1,4 +1,4 @@
-<div align="center"><a href="http://www.cnblogs.com/LuckWJL"><img width="230px" src="https://avatars1.githubusercontent.com/u/30070864?s=400&u=82cff33d237e7809e591a177d3674af7f24f6c7e&v=4" alt="美貌与智慧并存的你点下关注吧^^" title="认真的人最酷"></a></div>
+<div align="center"><a href="http://www.cnblogs.com/LuckWJL"><img width="230px" src="https://www.cnblogs.com/images/cnblogs_com/LuckWJL/988555/o_%e5%8a%a8%e6%80%81%e6%95%b0%e5%ad%97.gif" alt="美貌与智慧并存的你点下关注吧^^" title="认真的人最酷"></a></div>
 
 # ConfigLinux
 配置Linux服务器的自动化脚本
