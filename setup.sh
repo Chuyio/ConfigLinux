@@ -466,6 +466,10 @@ echo "https://www.cnblogs.com/LuckWJL/p/9683683.html"
 echo -e "\033[46;31;5m 请先前往博客参照进行安装 该脚本功能正在测试当中 请关注该脚本后续发布 \033[0m"
 }
 
+
+#要使用配置VPN的功能需要按照下面博客进行安装配置好openvpn的环境
+#https://www.cnblogs.com/LuckWJL/p/9776433.html
+#再安装一个插件expect(yum -y install expect)即可
 NOPENVPN(){
 read -p "PLEASE INPUT NEW USER: " USERS
 PATH1="/etc/openvpn/easy-rsa/3.0.3"
@@ -520,6 +524,15 @@ then
     echo -e "\033[41;33;5m FILE ERROR \033[0m"
     exit 110
 fi
+#解锁下面的发邮件功能需要安装配置好sendEmail
+#配置sendEmail可以查看https://www.cnblogs.com/LuckWJL/p/8143801.html
+#cd $PATH3
+#cat > $PATH3/README.txt << EOF
+#VPN的安装说明与使用的教程请看下面的链接
+#https://www.cnblogs.com/LuckWJL/p/10196267.html
+#EOF
+#tar -cvf $USERS.tar ./*
+#sendEmail -f fajianren@163.com -t $USERS@soujianren -s smtp.163.com -u "VPN信息" -o message-content-type=html -o message-charset=utf8 -xu fajianren@163.com -xp mimapassword -m "您好,该邮件为自动发送邮件,信息：VPN账号已创建,详细信息请您查看 附件中README文件" -a /etc/openvpn/client/$USERS/$USERS.tar
 }
 
 DOPENVPN(){
