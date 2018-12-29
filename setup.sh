@@ -15,9 +15,11 @@ echo "######       2、优化系统       ######"
 echo "######       3、命令审计       ######"
 echo "######       4、配置yum源      ######"
 echo "######       5、安装MySQL      ######"
+echo "######       6、NEW VPN USER   ######"
+echo "######       7、DEL VPN USER   ######"
 echo "#####################################"
-read -p "Please Input Number (1/2/3/4) :" Nmb
-if [ ! $Nmb == 1 ] && [ ! $Nmb == 2 ] && [ ! $Nmb == 3 ] && [ ! $Nmb == 4 ] && [ ! $Nmb == 5 ]
+read -p "Please Input Number (1/2/3/4/5/6/7) :" Nmb
+if [ ! $Nmb == 1 ] && [ ! $Nmb == 2 ] && [ ! $Nmb == 3 ] && [ ! $Nmb == 4 ] && [ ! $Nmb == 5 ] && [ ! $Nmb == 6 ] && [ ! $Nmb == 7 ]
 then
     echo -e "\033[41;33;5m Input ERROR,you Can only enter 1 or 2 or 3 \033[0m"
     exit 110
@@ -464,6 +466,78 @@ echo "https://www.cnblogs.com/LuckWJL/p/9683683.html"
 echo -e "\033[46;31;5m 请先前往博客参照进行安装 该脚本功能正在测试当中 请关注该脚本后续发布 \033[0m"
 }
 
+NOPENVPN(){
+read -p "PLEASE INPUT NEW USER: " USERS
+PATH1="/etc/openvpn/easy-rsa/3.0.3"
+PATH2="/etc/openvpn/client/easy-rsa/3.0.3"
+PATH3="/etc/openvpn/client/$USERS"
+if [ -d $PATH3 ]
+then
+    echo -e "\033[41;33;5m $USERS already exist... \033[0m"
+    exit 110
+fi
+
+cd $PATH2
+/usr/bin/expect <<-EOF
+spawn ./easyrsa gen-req $USERS nopass
+expect {
+        "Common Name"
+        {
+        send "\n"
+        }
+        "overwrite"
+        {
+        send "yes\n"
+        expect "Common Name" {send "\n"}
+        }
+}
+
+expect eof
+EOF
+PanDuan
+
+cd $PATH1
+./easyrsa import-req $PATH2/pki/reqs/$USERS.req $USERS
+
+/usr/bin/expect <<-EOF
+spawn ./easyrsa sign client $USERS
+
+expect "Confirm" {send "yes\n"}
+
+expect "phrase" {send "Elements\n"}
+
+expect eof
+EOF
+PanDuan
+
+mkdir $PATH3
+cp $PATH1/pki/ca.crt $PATH3
+cp $PATH1/pki/issued/$USERS.crt $PATH3
+cp $PATH2/pki/private/$USERS.key $PATH3
+NUMB=`ls -l $PATH3 | wc -l`
+if [ $NUMB -ne 4 ]
+then
+    echo -e "\033[41;33;5m FILE ERROR \033[0m"
+    exit 110
+fi
+}
+
+DOPENVPN(){
+read -p "DELET USER NAME: " USERS
+cd /etc/openvpn/easy-rsa/3.0.3
+/usr/bin/expect <<-EOF
+spawn ./easyrsa revoke $USERS
+expect "revocation" {send "yes\n"}
+expect "Enter" {send "Elements\n"}
+expect eof
+EOF
+rm -rf /etc/openvpn/client/$USERS
+mv -bf /etc/openvpn/client/easy-rsa/3.0.3/pki/reqs/$USERS.req /tmp
+mv -bf /etc/openvpn/client/easy-rsa/3.0.3/pki/private/$USERS.key /tmp
+mv -bf /etc/openvpn/easy-rsa/3.0.3/pki/issued/$USERS.crt /tmp
+mv -bf /etc/openvpn/easy-rsa/3.0.3/pki/reqs/$USERS.req /tmp
+}
+
 case $Nmb in
 1)
     rm -rf /etc/udev/rules.d/70-persistent-net.rules >/dev/null 2>&1
@@ -525,6 +599,12 @@ case $Nmb in
 ;;
 5)
     mysqlInstall
+;;
+6)
+    NOPENVPN
+;;
+7)
+    DOPENVPN
 ;;
 *)
     echo -e "\033[41;33;5m Error, please check the first line variable \033[0m"
